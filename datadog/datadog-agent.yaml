@@ -15,6 +15,11 @@ spec:
         app: datadog-agent
       name: datadog-agent
     spec:
+      tolerations:    
+      - effect: NoSchedule      
+	key: node-role.kubernetes.io/master    
+      - key: CriticalAddonsOnly      
+	operator: Exists
       serviceAccountName: datadog-agent
       containers:
         - image: 'datadog/agent:latest'
